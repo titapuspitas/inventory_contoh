@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Pengembalian Inventory</title>
+    <style>
+        /* Reset styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7fafc;
+        }
+
+        .min-h-screen {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #2b6cb0;
+            color: white;
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            display: block;
+            padding: 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #3182ce;
+        }
+
+        /* Content */
+        .content {
+            flex-grow: 1;
+            padding: 30px;
+        }
+
+        .content .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .content h1 {
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        .btn {
+            background-color: #2b6cb0;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #3182ce;
+        }
+
+        /* Form Styling */
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .form-container form {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-container form .mb-4 {
+            margin-bottom: 15px;
+        }
+
+        .form-container form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-container form input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-container button {
+            padding: 12px 24px;
+            background-color: #2b6cb0;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px; /* Memberikan jarak antara tombol dan input */
+        }
+
+        .form-container button:hover {
+            background-color: #3182ce;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Inventory</h2>
+            <ul>
+                <li><a href="dashboard.html">Home</a></li>
+                <li><a href="#">Produk</a></li>
+                <li><a href="peminjaman.html">Peminjaman</a></li>
+                <li><a href="pengembalian.html">Pengembalian</a></li>
+                <li><a href="index.html" class="btn">Logout</a></li>
+            </ul>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <img src="img/logo.png" alt="Logo" style="width: 250px; height: auto; margin: 0 auto; display: block; margin-bottom: 20px;">
+            <div class="header">
+                <h1>Peminjaman Produk</h1>
+            </div>
+            
+            <!-- Form Peminjaman -->
+            <div class="form-container">
+                <h2>Formulir Pengembali</h2>
+                <form>
+                    <div class="mb-4">
+                        <label for="nama-peminjam">Nama Pengembali</label>
+                        <input type="text" id="nama-peminjam" placeholder="Masukkan nama">
+                    </div>
+                    <div class="mb-4">
+                        <label for="barang">Barang yang Dikembalikan</label>
+                        <input type="text" id="barang" placeholder="Masukkan nama barang">
+                    </div>
+                    <div class="mb-4">
+                        <label for="tanggal-pinjam">Tanggal Dikembalikan</label>
+                        <input type="date" id="tanggal-pinjam">
+                    </div>
+                    <button type="submit">Kirim</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
