@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Produk Inventory</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f7fafc;
+            color: black;
+            padding: 0;
+            margin: 0;
+        }
+
+        .min-h-screen {
+            min-height: 100vh;
+            display: flex;
+            position: relative;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #2b6cb0;
+            color: white;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+        }
+
+        .sidebar h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            display: block;
+            padding: 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #3182ce;
+        }
+
+        .content {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 20px;
+            height: 100vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #2b6cb0; /* warna biru-800 */
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #3182ce; /* warna biru-700 */
+        }
+
+        .search-container {
+            border: 1px solid #ddd;
+            background-color: white;
+            border-radius: 25px;
+            padding: 10px 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-icon {
+            color: #666;
+            margin-right: 10px;
+        }
+
+        .search-input {
+            border: 1px solid #ddd;
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .table-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative; /* Make the container relative for positioning child elements */
+        }
+
+        .table-container h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: black;
+        }
+
+        table th, table td {
+            border: 1px solid #e2e8f0; /* abu-abu terang */
+            padding: 12px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #edf2f7; /* abu-abu terang */
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f7fafc;
+        }
+
+        .status-badge {
+            background-color: #28a745;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+
+        /* Efek hover pada baris tabel */
+        tr:hover {
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .action-btn {
+            background-color: #3182ce;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 5px;
+            text-align: center;
+        }
+
+        .delete-btn {
+            background-color: #e53e3e;
+        }
+
+        /* Konfirmasi Hapus */
+        .delete-confirmation {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .confirmation-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .confirmation-box button {
+            margin: 5px;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            background-color: #3182ce;
+            color: white;
+        }
+
+        .confirmation-box button:hover {
+            background-color: #2b6cb0;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Inventory</h2>
+            <ul>
+                <li><a href="dashboard.html">Home</a></li>
+                <li><a href="produk.html">Produk</a></li>
+                <li><a href="peminjaman.html">Peminjaman</a></li>
+                <li><a href="pengembalian.html">Pengembalian</a></li>
+                <li><a href="index.html" class="btn">Logout</a></li>
+            </ul>
+        </div>
+
+        <!-- Konten -->
+        <div class="content">
+            <img src="img/logo.png" alt="Logo" style="width: 250px; height: auto; margin: 0 auto; display: block; margin-bottom: 20px;">
+            <div class="header">
+                <div class="page-info">30 dari ...</div>
+                <button class="btn"><a href="formalat.html" class="btn">Tambah Produk</a></button>
+            </div>
+
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" placeholder="Coba cari: PC">
+            </div>
+
+            <div class="table-container">
+                <h2>Daftar Produk</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NO.</th>
+                            <th>KAT.</th>
+                            <th>NAMA</th>
+                            <th>SPESIFIKASI</th>
+                            <th>JENIS</th>
+                            <th>TAHUN</th>
+                            <th>AKSI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1.</td>
+                            <td>PC</td>
+                            <td>PC Gigabyte (4)</td>
+                            <td>Intel i5 12400F 2.5Ghz / 16GB / NVIDIA GForce GTX 1600 8GB</td>
+                            <td>Aset</td>
+                            <td>2024</td>
+                            <td>
+                                <button class="action-btn" onclick="document.querySelector('.edit-form').classList.toggle('active')">Edit</button>
+                                <button class="action-btn delete-btn" onclick="showDeleteConfirmation(this)">Hapus</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2.</td>
+                            <td>Laptop</td>
+                            <td>Laptop MSI (1)</td>
+                            <td>i5 11400H 2.7GHz / 15inch / 8GB / 512GB SSD / NVIDIA RTX 3050 8GB</td>
+                            <td>Aset</td>
+                            <td>2024</td>
+                            <td>
+                                <button class="action-btn" onclick="document.querySelector('.edit-form').classList.toggle('active')">Edit</button>
+                                <button class="action-btn delete-btn" onclick="showDeleteConfirmation(this)">Hapus</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Konfirmasi Hapus -->
+    <div class="delete-confirmation">
+        <div class="confirmation-box">
+            <p>Apakah Anda yakin ingin menghapus produk ini?</p>
+            <button onclick="deleteProduct()">Ya</button>
+            <button onclick="cancelDelete()">Tidak</button>
+        </div>
+    </div>
+
+    <script>
+        let rowToDelete = null; // Menyimpan baris yang akan dihapus
+
+        function showDeleteConfirmation(button) {
+            rowToDelete = button.closest('tr'); // Menyimpan baris yang dipilih untuk dihapus
+            document.querySelector('.delete-confirmation').style.display = 'flex'; // Menampilkan konfirmasi
+        }
+
+        function deleteProduct() {
+            if (rowToDelete) {
+                rowToDelete.remove(); // Menghapus baris yang dipilih
+                document.querySelector('.delete-confirmation').style.display = 'none'; // Menyembunyikan konfirmasi
+            }
+        }
+
+        function cancelDelete() {
+            document.querySelector('.delete-confirmation').style.display = 'none'; // Menyembunyikan konfirmasi
+        }
+    </script>
+</body>
+</html>

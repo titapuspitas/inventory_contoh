@@ -24,7 +24,7 @@
             width: 250px;
             background-color: #2b6cb0;
             color: white;
-            padding: 30px;
+            padding: 20px;
             height: 100vh;
             position: fixed;
         }
@@ -32,7 +32,7 @@
         .sidebar h2 {
             font-size: 24px;
             font-weight: bold;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .sidebar ul {
@@ -41,27 +41,31 @@
         }
 
         .sidebar ul li {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .sidebar ul li a {
             color: white;
             text-decoration: none;
-            padding: 12px;
+            font-size: 16px;
             display: block;
+            padding: 10px;
             border-radius: 4px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s ease;
         }
 
         .sidebar ul li a:hover {
             background-color: #3182ce;
         }
 
+
         /* Content */
         .content {
             margin-left: 250px;
             padding: 30px;
             width: 100%;
+            min-height: 100vh;
+            background-color: #f7fafc;
         }
 
         .header {
@@ -117,7 +121,6 @@
             font-weight: bold;
         }
 
-
         /* Responsive design for smaller screens */
         @media (max-width: 768px) {
             .stats {
@@ -139,25 +142,34 @@
                 padding: 10px 20px;
             }
         }
+
+        /* Logo styling */
+        .logo {
+            width: 250px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            margin-bottom: 20px;
+        }
+
     </style>
 </head>
 <body>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <h2>Inventory</h2>
-        <ul>
-            <li><a href="dashboard.html">Home</a></li>
-            <li><a href="#">Produk</a></li>
-            <li><a href="peminjaman.html">Peminjaman</a></li>
-            <li><a href="pengembalian.html">Pengembalian</a></li>
-            <li><a href="index.html" class="btn">Logout</a></li>
-        </ul>
-    </div>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Inventory</h2>
+            <ul>
+                <li><a href="dashboard.html">Home</a></li>
+                <li><a href="produk.html">Produk</a></li>
+                <li><a href="peminjaman.html">Peminjaman</a></li>
+                <li><a href="pengembalian.html">Pengembalian</a></li>
+                <li><a href="index.html" class="btn">Logout</a></li>
+            </ul>
+        </div>
 
     <!-- Content -->
     <div class="content">
-        <img src="img/logo.png" alt="Logo" style="width: 250px; height: auto; margin: 0 auto; display: block; margin-bottom: 20px;">
+        <img src="img/logo.png" alt="Logo" class="logo">
         <div class="header">
             <h1>Dashboard Inventory</h1>
         </div>
