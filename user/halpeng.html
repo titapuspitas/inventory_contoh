@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pinjam Alat</title>
+    <title>Pengembalian Alat</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -59,8 +59,7 @@
             align-items: center;
         }
 
-        .form-group select, 
-        .form-group input, 
+        .form-group input,
         .form-group textarea {
             width: 100%;
             padding: 10px;
@@ -100,38 +99,67 @@
             <a href="pengembalianuser.html">
                 <div class="back-arrow" onclick="history.back()"></div>
             </a>
-            <h2>pengembalian Alat</h2><p>
+            <h2>Pengembalian Alat</h2>
         </div>
-        <form>
+        <form id="formPengembalian"><P>
             <div class="form-group">
-                <p><label for="siapa">Siapa?</label>
-                <select id="siapa">
-                    <option>-- Pilih --</option>
-                </select>
+                <label for="nama">Nama Peminjam</label>
+                <input type="text" id="nama" placeholder="Tulis nama kamu..." required>
             </div>
 
             <div class="form-group">
-                <label for="namamu">Namamu?</label>
-                <input type="text" id="namamu" placeholder="Tulis nama kamu...">
+                <label for="alat">Nama Alat</label>
+                <input type="text" id="alat" placeholder="Tulis nama alat yang dikembalikan..." required>
             </div>
 
             <div class="form-group">
-                <label for="alat">Pilih Alat/barang</label>
-                <select id="alat">
-                    <option>-- Pilih --</option>
-                </select>
+                <label for="tanggalPinjam">Tanggal Peminjaman</label>
+                <input type="date" id="tanggalPinjam" required>
             </div>
 
             <div class="form-group">
-                <label for="keperluan">Keperluannya apa?</label>
-                <textarea id="keperluan" rows="3" placeholder="Tulis keperluan meminjam alat ini..."></textarea>
+                <label for="tanggalKembali">Tanggal Pengembalian</label>
+                <input type="date" id="tanggalKembali" required readonly>
             </div>
 
-            <p><em>Dengan menekan tombol "Kembalikan", saya sudah bertanggung jawab terhadap alat/barang yang telah dipinjam sesuai dengan <u>SOP poin 2.i.</u></em></p>
+            <div class="form-group">
+                <label for="kondisi">Kondisi Alat</label>
+                <textarea id="kondisi" rows="3" placeholder="Deskripsikan kondisi alat..." required></textarea>
+            </div>
 
-            <button type="submit">Kembalikan</button>
+            <p><b>Status akan dikonfirmasi oleh admin.</b></p>
+
+            <button type="submit">Kembalikan Alat</button>
         </form>
         <div class="footer">&copy; Diskominfo Kota Tasikmalaya</div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let today = new Date().toISOString().split('T')[0];
+            document.getElementById("tanggalKembali").value = today;
+        });
+
+        document.getElementById("formPengembalian").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let pengembalian = JSON.parse(localStorage.getItem("pengembalian")) || [];
+
+            let newPengembalian = {
+                nama: document.getElementById("nama").value,
+                alat: document.getElementById("alat").value,
+                tanggalPinjam: document.getElementById("tanggalPinjam").value,
+                tanggalKembali: document.getElementById("tanggalKembali").value,
+                kondisi: document.getElementById("kondisi").value,
+                status: "Menunggu Konfirmasi"
+            };
+
+            pengembalian.push(newPengembalian);
+            localStorage.setItem("pengembalian", JSON.stringify(pengembalian));
+            alert("Pengembalian berhasil disimpan! Tunggu konfirmasi dari admin.");
+            document.getElementById("formPengembalian").reset();
+            document.getElementById("tanggalKembali").value = today; // Reset tanggal kembali ke hari ini
+        });
+    </script>
 </body>
 </html>

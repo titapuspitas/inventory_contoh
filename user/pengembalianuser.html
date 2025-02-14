@@ -3,36 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Peminjaman Alat Diskominfo</title>
+    <title>Sistem Pengembalian Alat Diskominfo</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #FFFFFF; /* Putih */
+            background-color: #F4F4F4;
             color: black;
             text-align: center;
         }
 
-        /* Header utama */
         .header-title {
             font-size: 28px;
             font-weight: bold;
-            margin-top: 30px;
-            margin-bottom: 10px;
-            color: #FFD700; /* Kuning */
+            margin-top: 20px;
+            color: #FFD700;
         }
 
-        /* Navbar */
         .navbar {
-            background-color: #005696; /* Biru Tua */
-            padding: 10px 20px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            background-color: #005696;
+            padding: 12px;
             display: flex;
             justify-content: center;
-            border-radius: 20px;
+            border-radius: 12px;
             width: fit-content;
-            margin: auto;
+            margin: 15px auto;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
         }
 
         .nav-links {
@@ -45,62 +42,55 @@
             color: white;
             font-size: 16px;
             padding: 8px 15px;
-            border-radius: 20px;
+            border-radius: 8px;
             transition: background 0.3s;
         }
 
         .nav-links a:hover {
-            background: #0071BC; /* Biru Terang */
+            background: #0071BC;
         }
 
-        /* Kontainer utama */
         .container {
-            width: 100%;
-            background-color: #F4F4F4; /* Abu Muda */
+            width: 90%;
+            margin: auto;
+            background-color: white;
             padding: 20px;
-            border-radius: 8px;
-            margin-top: 30px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
         }
 
-        /* Navbar atas tabel */
         .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
-            background-color: #005696; /* Biru Tua */
+            padding: 12px;
+            background-color: #005696;
             border-radius: 8px;
-            margin-bottom: 10px;
-            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
             color: white;
-        }
-
-        .title-bar {
-            font-size: 22px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 15px;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
         }
 
         .pinjam-btn {
-            background-color: #FFD700; /* Kuning */
-            text-decoration: none;
+            background-color: #FFD700;
             color: black;
             padding: 8px 15px;
-            border-radius: 15px;
+            border-radius: 12px;
             font-size: 14px;
             font-weight: bold;
             cursor: pointer;
             border: none;
+            transition: background 0.3s;
+        }
+
+        .pinjam-btn:hover {
+            background-color: #FFC107;
         }
 
         a {
             text-decoration: none;
             color: black;
         }
-        /* Data Info */
+        
         .data-info {
             font-size: 14px;
             color: white;
@@ -108,7 +98,6 @@
             margin-right: 20px;
         }
 
-        /* Kotak pencarian */
         .search-wrapper {
             display: flex;
             justify-content: flex-start;
@@ -119,6 +108,7 @@
             display: flex;
             align-items: center;
             background-color: white;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
             border-radius: 8px;
             padding: 8px;
             width: 250px;
@@ -137,54 +127,52 @@
             margin-right: 8px;
         }
 
-        /* Tabel */
         .table-container {
             width: 100%;
             overflow-x: auto;
+            margin-top: 10px;
         }
 
         table {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
             width: 100%;
             border-collapse: collapse;
-            overflow: hidden;
+            background-color: white;
+            border-radius: 8px;
             box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
-            color: black;
         }
 
         th, td {
             padding: 12px;
             text-align: left;
-            border-bottom: 1px solid #0071BC; /* Biru Terang */
+            border-bottom: 1px solid #ddd;
         }
 
         th {
-            background-color: #005696; /* Biru Tua */
-            text-transform: uppercase;
-            font-size: 14px;
+            background-color: #005696;
             color: white;
-        }
-
-        td {
-            font-size: 14px;
         }
 
         .status {
-            background-color: #73A839; /* Hijau */
-            color: white;
-            text-align: center;
+            padding: 6px;
+            border-radius: 6px;
             font-weight: bold;
+            text-align: center;
+        }
+
+        .status-dipinjam {
+            background-color: #FFB300;
+            color: black;
+        }
+
+        .status-kembali {
+            background-color: #73A839;
+            color: white;
         }
     </style>
 </head>
 <body>
-
-    <!-- Judul utama -->
     <div class="header-title">Sistem Pengembalian Alat Diskominfo</div>
 
-    <!-- Navbar -->
     <div class="navbar">
         <div class="nav-links">
             <a href="peminjamanuser.html">Peminjaman</a>
@@ -192,27 +180,22 @@
         </div>
     </div>
 
-    <!-- Konten utama -->
     <div class="container">
-        
-        <!-- Navbar atas tabel -->
         <div class="top-bar">
             <div class="title-bar">
-                Pengembalian Alat  
-                <span class="pinjam-btn"><a href="halpij.html">Pengembali</a></span>
+                📋 Daftar Pengembalian Alat  
+                <button class="pinjam-btn"><a href="halpeng.html">Pengembalian Alat</a></button>
             </div>
-            <div class="data-info">30 dari 1000</div>
+            <div class="data-info" id="data-info">0 barang dikembalikan</div>
         </div>
 
-        <!-- Kotak pencarian -->
         <div class="search-wrapper">
             <div class="search-container">
                 <span class="search-icon">🔍</span>
-                <input type="text" placeholder="Coba cari: Lenovo">
+                <input type="text" placeholder="search">
             </div>
         </div>
-        
-        <!-- Tabel -->
+
         <div class="table-container">
             <table>
                 <thead>
@@ -223,32 +206,39 @@
                         <th>KEPERLUAN</th>
                         <th>TGL. PINJAM</th>
                         <th>TGL. KEMBALI</th>
-                        <th>WAKTU (hari)</th>
+                        <th>STATUS</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1.</td>
-                        <td>HP Chromebook 11 G8 (16)</td>
-                        <td>RESTA DWI LESTARI</td>
-                        <td>untuk belajar</td>
-                        <td>Mon Feb 10 2025, 8:22:12 AM</td>
-                        <td class="status">Masih dipinjam</td>
-                        <td>~</td>
-                    </tr>
-                    <tr>
-                        <td>2.</td>
-                        <td>HP Chromebook 11 G8 (10)</td>
-                        <td>Salsa</td>
-                        <td>Untuk tugas kejuruan</td>
-                        <td>Tue Feb 11 2025, 7:56:56 AM</td>
-                        <td class="status">Masih dipinjam</td>
-                        <td>~</td>
-                    </tr>
+                <tbody id="pengembalianTable">
                 </tbody>
             </table>
         </div>
     </div>
 
+    <script>
+        function loadPengembalian() {
+            let pengembalian = JSON.parse(localStorage.getItem("pengembalian")) || [];
+            let tableBody = document.getElementById("pengembalianTable");
+            let dataInfo = document.getElementById("data-info");
+            tableBody.innerHTML = "";
+
+            pengembalian.forEach((item, index) => {
+                let row = `<tr>
+                    <td>${index + 1}.</td>
+                    <td>${item.alat}</td>
+                    <td>${item.nama}</td>
+                    <td>${item.keperluan}</td>
+                    <td>${item.tanggalPinjam}</td>
+                    <td>${item.tanggalKembali || 'Belum Dikembalikan'}</td>
+                    <td class="status ${item.status === 'Dikembalikan' ? 'status-kembali' : 'status-dipinjam'}">${item.status}</td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+
+            dataInfo.textContent = `${pengembalian.filter(i => i.status === 'Dikembalikan').length} barang dikembalikan`;
+        }
+
+        document.addEventListener("DOMContentLoaded", loadPengembalian);
+    </script>
 </body>
 </html>

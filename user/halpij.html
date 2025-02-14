@@ -100,31 +100,37 @@
             <a href="peminjamanuser.html">
                 <div class="back-arrow" onclick="history.back()"></div>
             </a>
-            <h2>Pinjam Alat</h2><p>
+            <h2>Pinjam Alat</h2>
         </div>
-        <form>
+        <form id="formPeminjaman"><p>
             <div class="form-group">
-                <p><label for="siapa">Siapa?</label>
-                <select id="siapa">
-                    <option>-- Pilih --</option>
+                <label for="siapa">Siapa?</label>
+                <select id="siapa" required>
+                    <option value="">-- Pilih --</option>
+                    <option value="Staff">Staff</option>
+                    <option value="Magang">Magang</option>
+                    <option value="Client">Client</option>
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="namamu">Namamu?</label>
-                <input type="text" id="namamu" placeholder="Tulis nama kamu...">
+                <input type="text" id="namamu" placeholder="Tulis nama kamu..." required>
             </div>
 
             <div class="form-group">
                 <label for="alat">Pilih Alat/barang</label>
-                <select id="alat">
-                    <option>-- Pilih --</option>
+                <select id="alat" required>
+                    <option value="">-- Pilih --</option>
+                    <option value="Laptop">Laptop</option>
+                    <option value="Proyektor">Proyektor</option>
+                    <option value="Kamera">Kamera</option>
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="keperluan">Keperluannya apa?</label>
-                <textarea id="keperluan" rows="3" placeholder="Tulis keperluan meminjam alat ini..."></textarea>
+                <textarea id="keperluan" rows="3" placeholder="Tulis keperluan meminjam alat ini..." required></textarea>
             </div>
 
             <p><em>Dengan menekan tombol "Pinjam", saya bertanggung jawab terhadap alat/barang yang dipinjam sesuai dengan <u>SOP poin 2.i.</u></em></p>
@@ -133,5 +139,42 @@
         </form>
         <div class="footer">&copy; Diskominfo Kota Tasikmalaya</div>
     </div>
+
+    <script>
+        document.getElementById("formPeminjaman").addEventListener("submit", function(event) {
+            event.preventDefault(); // Mencegah form refresh halaman
+
+            // Ambil data dari form
+            let siapa = document.getElementById("siapa").value;
+            let nama = document.getElementById("namamu").value;
+            let alat = document.getElementById("alat").value;
+            let keperluan = document.getElementById("keperluan").value;
+            let tanggalPinjam = new Date().toLocaleString("id-ID");
+
+            // Pastikan semua input sudah diisi
+            if (!siapa || !nama || !alat || !keperluan) {
+                alert("Harap isi semua data!");
+                return;
+            }
+
+            // Simpan data ke localStorage
+            let peminjaman = JSON.parse(localStorage.getItem("peminjaman")) || [];
+            peminjaman.push({
+                siapa: siapa,
+                nama: nama,
+                alat: alat,
+                keperluan: keperluan,
+                tanggalPinjam: tanggalPinjam,
+                status: "Dipinjam"
+            });
+
+            localStorage.setItem("peminjaman", JSON.stringify(peminjaman));
+
+            alert("Peminjaman berhasil disimpan!");
+
+            // Redirect ke halaman daftar peminjaman
+            window.location.href = "peminjamanuser.html";
+        });
+    </script>
 </body>
 </html>
